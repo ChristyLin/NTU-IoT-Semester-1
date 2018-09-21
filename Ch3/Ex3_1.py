@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+
 import sys
 import serial
 import threading
 import time
-from queue import Queue
+from queue import Queue
+
 class RxThread(threading.Thread):
     def __init__(self, ser, queue):
         threading.Thread.__init__(self)
@@ -12,7 +15,8 @@ class RxThread(threading.Thread):
         self._running = True
         self.freq = queue
         self.freq.put(0)
-        self.period = 0        
+        self.period = 0
+        
     def run(self):
         freq = 0
         tStart = time.time()
@@ -47,11 +51,14 @@ class RxThread(threading.Thread):
                     tStart = time.time()
                 # print('freq is %f' % freq)
                 # print('put queue size:',self.freq.qsize())
-                self.sig_temp = sig                
+                self.sig_temp = sig
+                
     def resume(self):
-        self._running = True        
+        self._running = True
+        
     def stop(self):
-        self._running = False
+        self._running = False
+
 class TxThread(threading.Thread):
     def __init__(self, ser, queue):
         threading.Thread.__init__(self)
@@ -59,7 +66,8 @@ class TxThread(threading.Thread):
         self.freq_target = 0
         self.freq_now = 0
         self.freq = queue
-        self._running = True        
+        self._running = True
+        
     def run(self):
         pwm = 0
         while True:
@@ -88,12 +96,15 @@ class TxThread(threading.Thread):
                 time.sleep(0.1)
             else:
                 pass
-            # print(pwm)
+            # print(pwm)
+
     def resume(self):
-        self._running = True
+        self._running = True
+
     def stop(self):
         self._running = False
-        self.ser.close()
+        self.ser.close()
+
 def main():
     print('input rps or q for quit: ')
     print('{:^10} {:^10} {:^10}'.format('target','current','input'))
@@ -104,7 +115,8 @@ def main():
     tx = TxThread(ser, queue)
     rx.start()
     tx.start()
-    
+    
+
     while True:
         # input_temp = input('\rinput rps or q for quit: ')
         input_temp = input()
@@ -120,7 +132,10 @@ def main():
             tx.freq_target = float(input_temp)
             # tx.freq_now = float(rx.freq)
         except:
-            pass
+            pass
+
 if __name__=='__main__':
-    main()
-
+    main()
+
+
+
