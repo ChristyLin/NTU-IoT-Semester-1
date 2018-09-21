@@ -108,8 +108,8 @@ class TxThread(threading.Thread):
 def main():
     print('input rps or q for quit: ')
     print('{:^10} {:^10} {:^10}'.format('target','current','input'))
-    # ser = serial.Serial('/dev/ttyACM0', 9600, timeout= 0.5 )
-    ser = serial.Serial('COM7', 9600, timeout= 0.5 )
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout= 0.5 ) #RPi serial port
+    # ser = serial.Serial('COM7', 9600, timeout= 0.5 )
     queue = Queue()
     rx = RxThread(ser, queue)
     tx = TxThread(ser, queue)
