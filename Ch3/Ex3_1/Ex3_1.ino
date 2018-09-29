@@ -1,7 +1,7 @@
 int wheelPin = 3;
 int buttonpin = 5;
 int val;
-int fan_pwm = 0;
+int fan_pwm = 0;                // value in terms of 0 to 255
 String inputString = "";         // a String to hold incoming data
 bool stringComplete = false;  // whether the string is complete
 
