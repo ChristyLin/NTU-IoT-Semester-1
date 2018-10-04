@@ -76,7 +76,7 @@ class TxThread(threading.Thread):
                 
                 sys.stdout.flush()
                 # sys.stdout.write('\r{:^10} {:^10}'.format('target','current'))
-                sys.stdout.write("\r{:^10} {:^10}".format(self.freq_target,self.freq_now))
+                sys.stdout.write("\r{:^10} {:^10}".format(self.freq_target,round(self.freq_now,2)))
                 # print('get queue size:',self.freq_quene.qsize())
             else:
                 pass
