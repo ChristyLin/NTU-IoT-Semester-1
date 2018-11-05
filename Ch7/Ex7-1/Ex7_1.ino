@@ -4,16 +4,16 @@
 #include "DHT.h"
 
 // Assign AP ssid / password here
-#define _SSID "404-A"
-#define _KEY  "12345678"
+#define _SSID "your_ssid" // [todo]
+#define _KEY  "your_password" // [todo]
 
 // Assign device id / key of your test device
-MCSDevice mcs("DlTSGq3F", "fy0C5FuwrRPIwFaI");
+MCSDevice mcs("your_device_id", "your_device_key"); // [todo]
 
 // Assign channel id 
-MCSDisplayFloat humidity("Humidity");
-MCSDisplayFloat temperature("Temperature");
-MCSDisplayInteger light("Light");
+MCSDisplayFloat humidity("your_humidity_channel_id"); // [todo]
+MCSDisplayFloat temperature("your_temperature_channel_id"); // [todo]
+MCSDisplayInteger light("your_light_channel_id"); // [todo]
 
 #define DHTPIN A0     // what pin we're connected to
 #define LiIN A1     // Light connected to
@@ -36,35 +36,35 @@ DHT dht(DHTPIN, DHTTYPE);
 
 void setup() 
 {
-    Serial.begin(9600); 
-    Serial.println("DHTxx test!");
-    
-    // setup Wifi connection
-    while(WL_CONNECTED != WiFi.status())
-    {
-      Serial.print("WiFi.begin(");
-      Serial.print(_SSID);
-      Serial.print(",");
-      Serial.print(_KEY);
-      Serial.println(")...");
-      WiFi.begin(_SSID, _KEY);
-    }
-    Serial.println("WiFi connected !!");
+  Serial.begin(9600); 
+  Serial.println("DHTxx test!");
+  
+  // setup Wifi connection
+  while(WL_CONNECTED != WiFi.status())
+  {
+    Serial.print("WiFi.begin(");
+    Serial.print(_SSID);
+    Serial.print(",");
+    Serial.print(_KEY);
+    Serial.println(")...");
+    WiFi.begin(_SSID, _KEY);
+  }
+  Serial.println("WiFi connected !!");
 
-    // setup MCS connection
-    mcs.addChannel(humidity);
-    mcs.addChannel(temperature);
-    mcs.addChannel(light);
-    while(!mcs.connected())
-    {
-      Serial.println("MCS.connect()...");
-      mcs.connect();
-    }
-    Serial.println("MCS connected !!");
+  // setup MCS connection
+  mcs.addChannel(humidity);
+  mcs.addChannel(temperature);
+  mcs.addChannel(light);
+  while(!mcs.connected())
+  {
+    Serial.println("MCS.connect()...");
+    mcs.connect();
+  }
+  Serial.println("MCS connected !!");
 
-    Wire.begin();
-    SeeedOled.init();  //initialze SEEED OLED display
-    dht.begin();
+  Wire.begin();
+  SeeedOled.init();  //initialze SEEED OLED display
+  dht.begin();
 }
 
 void loop() 
