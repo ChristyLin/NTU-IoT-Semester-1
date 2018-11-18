@@ -35,17 +35,18 @@ def customCallback(client, userdata, message):
 def publish(PM25, loopCount):
     if mode == 'both' or mode == 'publish':
         message = {}
-        message['PM2.5'] = PM25
+        message['type'] = 'PM2.5'
+        message['value'] = PM25
         message['sequence'] = loopCount
         messageJson = json.dumps(message)
         myAWSIoTMQTTClient.publish(topic, messageJson, 1)
         if mode == 'publish':
             print('Published topic %s: %s\n' % (topic, messageJson))
 
-host = "a35w88o65wazq8-ats.iot.us-east-1.amazonaws.com"
-rootCAPath = "/home/pi/.aws/root-CA.crt"
-certificatePath = "/home/pi/.aws/MyRaspberryPi.cert.pem"
-privateKeyPath = "/home/pi/.aws/MyRaspberryPi.private.key"
+host = "your host name"
+rootCAPath = "your root CA path"
+certificatePath = "your certificate path"
+privateKeyPath = "your private key path"
 useWebsocket = False
 clientId = "myRPi"
 topic = "RPi/PM25"
