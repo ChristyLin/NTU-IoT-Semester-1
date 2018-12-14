@@ -1,7 +1,7 @@
 import time
 import paho.mqtt.client as paho
-broker = "192.168.50.138"
-port = 31275
+broker = "your broker ip" # [To Do]
+port = your broker port # [To Do]
 
 def on_message(client, userdata, message):
     time.sleep(1)
