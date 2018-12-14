@@ -17,8 +17,8 @@ def on_publish(client, messageJson):
     if mode == 'publish':
         print('Published topic %s: %s\n' % (topic, messageJson))
 
-broker = "MQTT broker ip" // [To DO]
-port = MQTT broker port // [To DO]
+broker = "MQTT broker ip" # [To DO]
+port = MQTT broker port # [To DO]
 clientId = "myRPi"
 topic = "RPi/PM25"
 mode = "publish"
